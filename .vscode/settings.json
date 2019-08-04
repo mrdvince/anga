@@ -1,0 +1,4 @@
+{
+    "python.formatting.provider": "autopep8",
+    "python.pythonPath": "/home/vinc3/fastdotai/fastdotai/bin/python"
+}
