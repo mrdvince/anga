@@ -33,6 +33,7 @@ classes = ['Apple Apple_scab',
            'Tomato Target_Spot', 'Tomato Tomato_Yellow_Leaf_Curl_Virus', 'Tomato___Tomato_mosaic_virus',
            'Tomato healthy']
 
+
 path = Path(__file__).parent
 
 app = Starlette()
