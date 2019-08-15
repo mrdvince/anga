@@ -1,9 +1,10 @@
+# Project Name: Plant Disease Recognizer
 
-![png](https://github.com/Droid021/anga/blob/master/plants.png)# Plant Disease Recognizer
-This is a web app user can upload the picture of affected plant and our
+A web app where user can upload the picture of affected plant and our
 deep learning Model can recognize the disease.
 
-Model trained with **Fast.ai**
+Model trained with: **Fast.ai**
+Dataset: [Plant Disease](https://www.kaggle.com/saroz014/plant-diseases)
 
 # Disease types
 - Apple Apple_scab
@@ -47,4 +48,9 @@ Model trained with **Fast.ai**
 
 # Screeshorts
 ![png](https://github.com/Droid021/anga/blob/master/plants.png)
+
+# Contributors:
+Slack Name:
+@Droid
+@Shudipto Trafder
 
