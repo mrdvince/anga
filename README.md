@@ -1,10 +1,11 @@
 
 ![png](https://github.com/Droid021/anga/blob/master/plants.png)# Plant Disease Recognizer
-This is a web app user can upload the picture of affected plant and our
-deep learning Model can recognize the disease.
+This is a web app where a user can upload a picture of an affected plant and the
+deep learning Model will recognize the disease.
 
 Model trained with **Fast.ai**
 
+Currently supports the following classes. (More to be added)
 # Disease types
 - Apple Apple_scab
 - Apple Black_rot 
