@@ -46,6 +46,6 @@ Currently supports the following classes. (More to be added)
 - Tomato healthy
 
 
-# Screeshorts
+# Screenshots
 ![png](https://github.com/Droid021/anga/blob/master/plants.png)
 
