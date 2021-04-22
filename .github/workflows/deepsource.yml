@@ -1,4 +1,4 @@
-- name: DeepSource Test Coverage Action
+name: DeepSource Test Coverage Action
   # You may pin to the exact commit or the version.
   # uses: deepsourcelabs/test-coverage-action@5dd75fd448df1d437bc9d658db0ee7d67a915c9f
   uses: deepsourcelabs/test-coverage-action@v1.0.0
