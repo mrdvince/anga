@@ -13,14 +13,14 @@ class PlantVillageLoader(BaseDataLoader):
         batch_size,
         shuffle=True,
         validation_split=0.0,
-        num_workers=6,
+        num_workers=2,
         training=True,
     ):
         trsfm = transforms.Compose(
-            [transfor
+            [
+                transforms.ToTensor(),
                 transforms.CenterCrop(224),
                 transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
-                transforms.ToTensor(),
             ]
         )
         self.data_dir = data_dir

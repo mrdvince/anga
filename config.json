@@ -1,18 +1,18 @@
 {
-    "name": "Mnist_LeNet",
+    "name": "Anga",
     "n_gpu": 1,
     "arch": {
-        "type": "MnistModel",
+        "type": "EffientNetB0",
         "args": {}
     },
     "data_loader": {
         "type": "PlantVillageLoader",
         "args": {
             "data_dir": "data/",
-            "batch_size": 28,
+            "batch_size": 8,
             "shuffle": true,
             "validation_split": 0.1,
-            "num_workers": 2
+            "num_workers": 6
         }
     },
     "optimizer": {
@@ -23,7 +23,7 @@
             "amsgrad": true
         }
     },
-    "loss": "nll_loss",
+    "loss": "cross_entropy",
     "metrics": [
         "accuracy",
         "top_k_acc"
