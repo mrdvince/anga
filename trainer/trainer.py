@@ -3,6 +3,8 @@ import torch
 from torchvision.utils import make_grid
 from base import BaseTrainer
 from utils import inf_loop, MetricTracker
+from tqdm.auto import tqdm
+import sys
 
 
 class Trainer(BaseTrainer):
@@ -55,35 +57,35 @@ class Trainer(BaseTrainer):
         """
         self.model.train()
         self.train_metrics.reset()
-        for batch_idx, (data, target) in enumerate(self.data_loader):
-            data, target = data.to(self.device), target.to(self.device)
 
-            self.optimizer.zero_grad()
-            output = self.model(data)
-            loss = self.criterion(output, target)
-            loss.backward()
-            self.optimizer.step()
+        with tqdm(total=len(self.data_loader), file=sys.stdout) as pbar:
+            for batch_idx, (data, target) in enumerate(self.data_loader):
+                data, target = data.to(self.device), target.to(self.device)
 
-            self.writer.set_step((epoch - 1) * self.len_epoch + batch_idx)
-            self.train_metrics.update("loss", loss.item())
-            for met in self.metric_ftns:
-                self.train_metrics.update(met.__name__, met(output, target))
+                self.optimizer.zero_grad()
+                output = self.model(data)
+                loss = self.criterion(output, target)
+                loss.backward()
+                self.optimizer.step()
 
-            if batch_idx % self.log_step == 0:
-                print(
-                    f"Train Epoch: {epoch} {self._progress(batch_idx)} Loss: {loss.item():.4f}",
-                    end="\r",
-                )
-                # self.logger.debug(
-                #     f"Train Epoch: {epoch} {self._progress(batch_idx)} Loss: {loss.item():.6f}",
-                #     end="\r",
-                # )
-                self.writer.add_image(
-                    "input", make_grid(data.cpu(), nrow=8, normalize=True)
-                )
+                self.writer.set_step((epoch - 1) * self.len_epoch + batch_idx)
+                self.train_metrics.update("loss", loss.item())
+                for met in self.metric_ftns:
+                    self.train_metrics.update(met.__name__, met(output, target))
 
-            if batch_idx == self.len_epoch:
-                break
+                if batch_idx % self.log_step == 0:
+                    pbar.set_description("Epoch: %d" % (epoch))
+                    pbar.set_postfix_str(
+                        f"Batch index: {self._progress(batch_idx)}, Loss: {loss.item():.3f}"
+                    )
+                    pbar.update()
+
+                    self.writer.add_image(
+                        "input", make_grid(data.cpu(), nrow=8, normalize=True)
+                    )
+
+                if batch_idx == self.len_epoch:
+                    break
         log = self.train_metrics.result()
 
         if self.do_validation:
