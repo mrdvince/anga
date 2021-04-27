@@ -1,4 +1,7 @@
 {
     "python.formatting.provider": "black",
-    "python.pythonPath": "/home/eggy/miniconda3/bin/python"
+    "python.pythonPath": "/home/eggy/miniconda3/bin/python",
+    "[python]": {
+        "editor.formatOnPaste": false
+    }
 }

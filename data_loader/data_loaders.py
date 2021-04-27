@@ -17,7 +17,11 @@ class PlantVillageLoader(BaseDataLoader):
         training=True,
     ):
         trsfm = transforms.Compose(
-            [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
+            [transfor
+                transforms.CenterCrop(224),
+                transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+                transforms.ToTensor(),
+            ]
         )
         self.data_dir = data_dir
         self.dataset = datasets.ImageFolder(root=self.data_dir, transform=trsfm)
