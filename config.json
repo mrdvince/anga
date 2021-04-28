@@ -8,11 +8,21 @@
     "data_loader": {
         "type": "PlantVillageLoader",
         "args": {
-            "data_dir": "data/",
+            "data_dir": "data/PlantVillage/train/",
             "batch_size": 8,
             "shuffle": true,
             "validation_split": 0.1,
-            "num_workers": 6
+            "num_workers": 2
+        }
+    },
+    "test_data_loader": {
+        "type": "PlantVillageLoader",
+        "args": {
+            "data_dir": "data/PlantVillage/test/",
+            "batch_size": 8,
+            "shuffle": true,
+            "validation_split": 0,
+            "num_workers": 2
         }
     },
     "optimizer": {

@@ -61,7 +61,7 @@ def main(config):
 
 
 if __name__ == "__main__":
-    args = argparse.ArgumentParser(description="PyTorch Template")
+    args = argparse.ArgumentParser(description="Plant Disease Classification")
     args.add_argument(
         "-c",
         "--config",
