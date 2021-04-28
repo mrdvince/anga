@@ -75,6 +75,19 @@ class ConfigParser:
         }
         return cls(config, resume, modification)
 
+    @classmethod
+    def from_config(cls, config, options=""):
+        """
+        Initialize this class from some config. read config file used in loading model directly from the api.
+        """
+
+        msg_no_cfg = "Configuration file need to be specified. Add '-c config.json', for example."
+        assert config is not None, msg_no_cfg
+        resume = None
+        cfg_fname = Path(config)
+        config = read_json(cfg_fname)
+        return cls(config)
+
     def init_obj(self, name, module, *args, **kwargs):
         """
         Finds a function handle with the name given as 'type' in config, and returns the

@@ -1,8 +1,8 @@
 {
-    "name": "Anga",
+    "name": "Project anga",
     "n_gpu": 1,
     "arch": {
-        "type": "EffientNetB0",
+        "type": "MixNetM",
         "args": {}
     },
     "data_loader": {
