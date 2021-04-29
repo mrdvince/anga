@@ -22,7 +22,7 @@ To set up your python environment to run the code in this repository, follow the
 	conda create --name py39 python=3.9.2
 	conda activate py39
 	```
-alternatively, use virtual environments if you don't have anaconda installed.
+alternatively, use virtual environments if you don't have Anaconda installed.
 
 2. Clone the repository (if you haven't already!), and navigate to the `anga` folder.  Then, install several dependencies.
 ```bash
@@ -43,7 +43,7 @@ Run ```uvicorn api.main:app``` and visit you ```local ip``` if running locally p
 See the README on this [link](https://github.com/mrdvince/pytorchtemplate) has been([forked from](https://github.com/victoresque/pytorch-template)). The readme contains information on the folder structures and how to modify the hyperparameters to your liking.
 
 On a high level:
-- the config json file contains the model hyperparmaters and other settings
+- the config json file contains the model hyperparamaters and other settings
 
 Run `python train.py -c config.json` to train the model.
 
