@@ -6,6 +6,8 @@ from PIL import Image
 from io import BytesIO
 from torchvision import transforms
 import numpy as np
+import os
+import json
 
 app = FastAPI(
     title="Plant leaf disease classifier",
@@ -37,14 +39,22 @@ def predict(bytes):
     tensor_image = trfms(img)
     model = load_model()
     output = model(tensor_image.unsqueeze(0))
-    y, pred_tensor = torch.max(output, 1)
+    _, pred_tensor = torch.max(output, 1)
+    # print(output)
     preds = np.squeeze(pred_tensor.numpy())
     return preds
 
 
+def get_classes():
+    with open(
+        os.path.join(os.path.dirname(__file__), "../", "data", "cat_to_name.json"), "r"
+    ) as f:
+        cats = json.loads(f.read())
+    return cats
+
+
 @app.post("/")
 def get_predictions(file: UploadFile = File(...)):
-    x = predict(file)
-    print(x)
-    preds = "leaf"
-    return {"predicted": preds}
+    pred = predict(file)
+    cats = get_classes()
+    return {"index": int(pred), "label": cats[str(pred)]}
