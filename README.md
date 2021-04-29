@@ -1,51 +1,60 @@
+![png](screenshots/leaf_imgs.png)
 
-![png](https://github.com/Droid021/anga/blob/master/plants.png)# Plant Disease Recognizer
-This is a web app where a user can upload a picture of an affected plant and the
-deep learning Model will recognize the disease.
+# Plant Disease Classifier
 
-Model trained with **Fast.ai**
+Using a pre-trained efficientnet (`for experimental purposes`) to classifier plant diseases given an image.
 
-Currently supports the following classes. (More to be added)
-# Disease types
-- Apple Apple_scab
-- Apple Black_rot 
-- Apple Cedar_apple_rust 
-- Apple healthy
-- Blueberry healthy 
-- Cherry(including_sour) Powdery_mildew
-- Cherry(including_sour) healthy
-- Corn_(maize) Cercospora_leaf_spot Gray_leaf_spot
-- Corn_(maize) Common_rust_
-- Corn_(maize) Northern_Leaf_Blight 
-- Corn_(maize) healthy 
-- Grape Black_rot
-- Grape Esca(Black_Measles) 
-- Grape Leaf blight (Isariopsis Leaf Spot) 
-- Orange Haunglongbing (Citrus_greening) 
-- Peach Bacterial_spot
-- Peach healthy
-- Pepper bell Bacterial_spot 
-- Pepper bell healthy 
-- Potato Early blight
-- Potato Late blight 
-- Potato healthy 
-- Raspberry healthy 
-- Soybean healthy
-- Squash Powdery_mildew 
-- Strawberry Leaf_scorch
-- Strawberry healthy 
-- Tomato Bacterial spot 
-- Tomato Early_blight
-- Tomato Late_blight 
-- Tomato Leaf_Mold 
-- Tomato Septoria leaf_spot
-- Tomato Spider_mites T-spotted_spider_mite 
-- Tomato Target_Spot
-- Tomato Tomato_Yellow_Leaf_Curl_Virus
-- Tomato___Tomato_mosaic_virus 
-- Tomato healthy
+The efficient net paper can be found [here](https://arxiv.org/abs/1905.11946) and the pretrained pytorch model got from torch hub 
+using ```torch.hub.list('rwightman/gen-efficientnet-pytorch')```
+
+> For more cool PyTorch pre-trained models, check out Ross Wightman [pytorch models repo](https://github.com/rwightman/pytorch-image-models)
+
+Download the dataset from the following link: https://www.crowdai.org/challenges/plantvillage-disease-classification-challenge
 
 
-# Screenshots
-![png](https://github.com/Droid021/anga/blob/master/plants.png)
+# Getting Started
 
+## Dependencies
+To set up your python environment to run the code in this repository, follow the instructions below.
+1. Create (and activate) a new environment with Python 3.6.
+	- __Linux__ or __Mac__: 
+	```bash
+	conda create --name py39 python=3.9.2
+	conda activate py39
+	```
+alternatively, use virtual environments if you don't have anaconda installed.
+
+2. Clone the repository (if you haven't already!), and navigate to the `anga` folder.  Then, install several dependencies.
+```bash
+git clone https://github.com/mrdvince/anga
+cd anga
+```
+
+## FastAPI endpoint
+
+A minimal API endpoint to expose your model, you can make it more robust if you want.
+
+Run ```uvicorn api.main:app``` and visit you ```local ip``` if running locally port ```8000``` playground to access the interactive docs (included by default). i.e. `http://127.0.0.1:8000/playground`
+
+![png](screenshots/fastapi.png)
+
+
+## Training
+See the README on this [link](https://github.com/mrdvince/pytorchtemplate) has been([forked from](https://github.com/victoresque/pytorch-template)). The readme contains information on the folder structures and how to modify the hyperparameters to your liking.
+
+On a high level:
+- the config json file contains the model hyperparmaters and other settings
+
+Run `python train.py -c config.json` to train the model.
+
+## Metrics
+Logged using tensorboard
+### Train and Validation Accuracies 
+![png](screenshots/acc.png)
+
+### Train and Validation Loss 
+![png](screenshots/loss.png)
+
+
+## Inputs
+![png](screenshots/input.png)
