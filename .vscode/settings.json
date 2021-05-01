@@ -1,7 +1,0 @@
-{
-    "python.formatting.provider": "black",
-    "python.pythonPath": "/home/eggy/anaconda3/envs/py39/bin/python",
-    "[python]": {
-        "editor.formatOnPaste": false
-    }
-}
