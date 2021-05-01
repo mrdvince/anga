@@ -13,7 +13,7 @@ class EffientNetB0(BaseModel):
         for param in self.model.conv_stem.parameters():
             param.requires_grad = False
         self.model.classifier = nn.Sequential(
-            nn.Linear(1280, 512), nn.Dropout(0.2), nn.ReLU(), nn.Linear(512, 38)
+            nn.Linear(1280, 512), nn.Dropout(0.2), nn.ReLU(), nn.Linear(512, 39)
         )
 
     def forward(self, x):
@@ -29,7 +29,21 @@ class MixNetM(BaseModel):
         for param in self.model.conv_stem.parameters():
             param.requires_grad = False
         self.model.classifier = nn.Sequential(
-            nn.Linear(1536, 512), nn.Dropout(0.2), nn.ReLU(), nn.Linear(512, 38)
+            nn.Linear(1536, 512), nn.Dropout(0.2), nn.ReLU(), nn.Linear(512, 39)
+        )
+
+    def forward(self, x):
+        return self.model(x)
+
+
+class densenet121(BaseModel):
+    def __init__(self):
+        super().__init__()
+        self.model = torchvision.models.densenet121(pretrained=True)
+        for param in self.model.features.parameters():
+            param.requires_grad = False
+        self.model.classifier = nn.Sequential(
+            nn.Linear(1024, 512), nn.Dropout(0.2), nn.ReLU(), nn.Linear(512, 39)
         )
 
     def forward(self, x):
