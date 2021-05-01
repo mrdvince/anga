@@ -125,6 +125,7 @@ class BaseTrainer:
             "state_dict": self.model.state_dict(),
             "optimizer": self.optimizer.state_dict(),
             "monitor_best": self.mnt_best,
+            "class_to_idx": self.data_loader.dataset.class_to_idx,
             "config": self.config,
         }
         filename = str(self.checkpoint_dir / "checkpoint-epoch{}.pth".format(epoch))
