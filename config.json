@@ -2,7 +2,7 @@
     "name": "Project anga",
     "n_gpu": 1,
     "arch": {
-        "type": "EffientNetB0",
+        "type": "densenet121",
         "args": {}
     },
     "data_loader": {

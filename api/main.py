@@ -53,7 +53,7 @@ Model used is a pretrained efficientnet b0, mixnet medium is also available
 
 
 def read_imagefile(data) -> Image.Image:
-    image = Image.open(BytesIO(data))
+    image = Image.open(BytesIO(data)).convert("RGB")
     return image
 
 
@@ -64,18 +64,16 @@ def load_model():
     state_dict = checkpoint["state_dict"]
     model.load_state_dict(state_dict)
     model = model.to("cpu")
-    model.eval()
-    return model
+    return model.eval()
 
 
 def predict(bytes):
     img = read_imagefile(bytes.file.read())
     trfms = transforms.Compose([transforms.ToTensor(), transforms.CenterCrop(224)])
-    tensor_image = trfms(img)
     model = load_model()
-    output = model(tensor_image.unsqueeze(0))
+    output = model(trfms(img).unsqueeze(0))
     _, pred_tensor = torch.max(output, 1)
-    # print(output)
+
     preds = np.squeeze(pred_tensor.numpy())
     return preds
 
